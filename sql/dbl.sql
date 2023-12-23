@@ -47,7 +47,7 @@ CREATE TABLE `avg`
     `avg_id`    BIGINT AUTO_INCREMENT,
     `base_code` varchar(255) NULL,
     `professor` varchar(255) NULL,
-    `avg_score` float NULL,
+    `avg_evaluation` float NULL,
     PRIMARY KEY (`avg_id`)
 );
 

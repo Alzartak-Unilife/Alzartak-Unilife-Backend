@@ -1,5 +1,6 @@
 package com.alzartak.unilife.domain.course;
 
+import com.alzartak.unilife.domain.avg.AvgRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CourseService {
     private final CourseRepository courseRepository;
+    private final AvgRepository avgRepository;
 
     public List<CourseResponse> searchCourse(CourseRequest courseRequest) {
         List<Course> courses = courseRepository.findByCurriculumContainsAndOfferingCollegeContainsAndOfferingDepartmentContainsAndBaseCodeContainsAndCourseNameContainsAndLectureCategoryContains(courseRequest.getCurriculum(), courseRequest.getOfferingCollege(), courseRequest.getOfferingDepartment(), courseRequest.getBaseCode(), courseRequest.getCourseName(), courseRequest.getLectureCategory());
@@ -52,6 +54,7 @@ public class CourseService {
 
         courseResponse.setGrades(parseGrades(course.getGrades()));
         courseResponse.setSchedules(parseSchedules(course.getSchedules()));
+        courseResponse.setAvgEvaluation(avgRepository.findAvgEvaluationByBaseCodeAndProfessor(course.getBaseCode(), course.getProfessor()));
 
         return courseResponse;
     }

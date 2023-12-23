@@ -49,4 +49,6 @@ public class CourseResponse {
     private String offeringDepartment;
 
     private String remarks;
+
+    private Float avgEvaluation;
 }
