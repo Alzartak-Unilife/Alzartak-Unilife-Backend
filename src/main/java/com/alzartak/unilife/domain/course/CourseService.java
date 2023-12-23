@@ -21,7 +21,7 @@ public class CourseService {
     private final AvgRepository avgRepository;
 
     public List<CourseResponse> searchCourse(CourseRequest courseRequest) {
-        List<Course> courses = courseRepository.findByCurriculumContainsAndOfferingCollegeContainsAndOfferingDepartmentContainsAndBaseCodeContainsAndCourseNameContainsAndLectureCategoryContains(courseRequest.getCurriculum(), courseRequest.getOfferingCollege(), courseRequest.getOfferingDepartment(), courseRequest.getBaseCode(), courseRequest.getCourseName(), courseRequest.getLectureCategory());
+        List<Course> courses = courseRepository.findByYearAndSemesterAndCurriculumContainsAndOfferingCollegeContainsAndOfferingDepartmentContainsAndBaseCodeContainsAndCourseNameContainsAndLectureCategoryContainsAndProfessorContainsAndLectureLanguageContains(courseRequest.getYear(), courseRequest.getSemester(), courseRequest.getCurriculum(), courseRequest.getOfferingCollege(), courseRequest.getOfferingDepartment(), courseRequest.getBaseCode(), courseRequest.getCourseName(), courseRequest.getLectureCategory(), courseRequest.getProfessor(), courseRequest.getLectureLanguage());
 
         return courses.stream()
                 .map(this::convertToCourseResponse)
